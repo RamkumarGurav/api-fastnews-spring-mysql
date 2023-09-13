@@ -1,0 +1,107 @@
+server:
+  port: 7001  #if you use Zero as port number then you will get random portnumber every time u run main app
+  servlet:
+    context-path: /api/v1   #context path to change the root or homepath
+
+welcomeMsg : Hi! Welcome to FASTNEWS API
+fromEmail: ramsender123@gmail.com
+frontendURL: http://localhost:7000/api/v1
+adminSecretPassword : asdffdsa
+jwtSecretKey : 8f2e76a5e3de35467604874bba1ab395fe5151d8581a555ce6ddf1e4efa2c019
+
+#debug: true
+
+spring:
+  profiles:
+    active: dev
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: ramsender123@gmail.com
+    password: njzsdkuwnkiayxxf
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls.enable: true
+
+logging:
+  level:
+    org:
+      springframework:
+        security: DEBUG
+        web : DEBUG
+
+
+
+
+---
+
+spring:
+  config:
+    activate:
+      on-profile: dev
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://spring-fastnewsdb.ckbv6izxnpok.ap-south-1.rds.amazonaws.com:3306/fastnewsdb
+    username: admin
+    password: 1JS15ec071
+  jpa:
+#    database-platform: org.hibernate.dialect.MySQLDialect
+    show-sql: true
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQLDialect
+        format_sql: true
+      javax:
+        persistence:
+          validation:
+            mode: none #to disable the 2nd time validation by spring data jpa only allowing one time validation by spring security
+    hibernate:
+      ddl-auto: update
+
+
+welcome:
+  message: Welcome to our DEV-API
+
+#actuatar management and exposing all endpoints for dev env
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+#
+#
+#---
+#
+#spring:
+#  config:
+#    activate:
+#      on-profile: prod
+#  datasource:
+#    driver-class-name: com.mysql.jdbc.Driver
+#    url: jdbc:mysql://spring-fastnewsdb.ckbv6izxnpok.ap-south-1.rds.amazonaws.com/fastnewsspringdb
+#    password: 1JS15ec071@
+#    username: admin
+#  jpa:
+#    show-sql: true
+#    properties:
+#      hibernate:
+#        dialect: org.hibernate.dialect.MySQLDialect
+#        format_sql: true
+#      javax:
+#        persistence:
+#          validation:
+#            mode: none #to disable the 2nd time validation by spring data jpa only allowing one time validation by spring security
+#    hibernate:
+#      ddl-auto: update
+#
+#welcome:
+#  message: Welcome to our DEV-API
+#
+##actuatar management and exposing all endpoints for dev env
+#management:
+#  endpoints:
+#    web:
+#      exposure:
+#        include: "*"
